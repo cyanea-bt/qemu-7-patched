@@ -212,11 +212,6 @@ static void gui_setup_refresh(DisplayState *ds)
     ds->have_text = have_text;
 }
 
-void graphic_hw_passthrough(QemuConsole *con, bool passthrough)
-{
-    con->ui_info.passthrough = passthrough;
-}
-
 void graphic_hw_update_done(QemuConsole *con)
 {
     if (con) {
@@ -232,8 +227,6 @@ void graphic_hw_update(QemuConsole *con)
         return;
     }
     if (con->hw_ops->gfx_update) {
-        if (con->ui_info.passthrough) { }
-        else
         con->hw_ops->gfx_update(con->hw);
         async = con->hw_ops->gfx_update_async;
     }
