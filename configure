@@ -2264,6 +2264,11 @@ fi
 # directory and symlink the directory instead.
 LINKS="Makefile"
 LINKS="$LINKS pc-bios/optionrom/Makefile"
+# mingw32 fix
+# ref: https://github.com/msys2/MINGW-packages/pull/19085/
+if [ "$MSYSTEM" == "MINGW32" ]; then 
+  LINKS="$LINKS pc-bios/optionrom/flat.lds"
+fi
 LINKS="$LINKS pc-bios/s390-ccw/Makefile"
 LINKS="$LINKS pc-bios/vof/Makefile"
 LINKS="$LINKS .gdbinit scripts" # scripts needed by relative path in .gdbinit
